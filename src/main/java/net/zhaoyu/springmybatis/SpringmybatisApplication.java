@@ -1,13 +1,18 @@
 package net.zhaoyu.springmybatis;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import net.zhaoyu.springmybatis.service.UserService;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
-@SpringBootApplication
+@ComponentScan("net.zhaoyu.springmybatis")
 public class SpringmybatisApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringmybatisApplication.class, args);
+		AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
+    	applicationContext.register(SpringmybatisApplication.class);
+    	applicationContext.refresh();
+
+		UserService userService = applicationContext.getBean("userService", UserService.class);
 	}
 
 }
